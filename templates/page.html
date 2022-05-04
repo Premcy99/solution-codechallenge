@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bank</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <style>
+
+    .t_header{
+    padding:10px 15px;
+    background:#dde5ef;
+    color:black;
+    font-weight: bold;
+    cursor:pointer;
+    display:inline-block
+    }
+    .t_body{
+    display:none;
+    text-align:center;
+    background:whitesmoke;
+    color:#fff;
+    padding:30px 20px
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      font-weight: bold;
+      color: black;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #b1ad8fc7;
+    }
+    </style>
+</head>
+<body>
+{% for i in res %}
+<div id="vn-click_{{forloop.counter}}" class="t_header">{{i.CreditorName.TUC}}</div><br>
+<div id="vn-info_{{forloop.counter}}" class="t_body">
+<table>
+<thead>
+<tr style="background-color: white">
+    <th></th>
+    <th>TUC</th>
+    <th>EQF</th>
+    <th>EXP</th>
+</tr>
+  </thead>
+  <tbody>
+
+<tr>
+    <td>Account Name</td>
+    <td>{{i.accountName.TUC}}</td>
+    <td>{{i.accountName.EQF}}</td>
+    <td>{{i.accountName.EXP}}</td>
+</tr>
+
+<tr>
+    <td>Account Number</td>
+    <td>{{i.accountNumber.TUC}}</td>
+    <td>{{i.accountNumber.EQF}}</td>
+    <td>{{i.accountNumber.EXP}}</td>
+</tr>
+
+
+<tr>
+    <td>Date Opened</td>
+    <td>{{i.dateOpened.TUC}}</td>
+    <td>{{i.dateOpened.EQF}}</td>
+    <td>{{i.dateOpened.EXP}}</td>
+</tr>
+
+</tbody>
+  </table>
+</div>
+<br><br>
+{% endfor %}
+
+</body>
+<script>
+$(document).ready(function(){
+    {% for i in res %}
+        $("#vn-click_"+{{forloop.counter}}).click(function(){
+        $("#vn-info_"+{{forloop.counter}}).slideToggle(1000);
+      });
+    {% endfor %}
+});
+</script>
+</html>
